@@ -158,27 +158,30 @@ export default function SimulationResultsComponent({ results, config }: Props) {
         </button>
 
         {isVisualsOpen && (
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-6 relative">
             {/* Show sections only if they have charging points */}
             {config.kw11.count > 0 && (
               <div className="space-y-4">
                 <h4 className="text-sm font-medium text-blue-600">11kW Charging Stations</h4>
                 <div className="flex flex-wrap gap-6">
                   <ChargingStationVisual power={11} count={config.kw11.count} isCharging={true} />
-                  <div className="flex items-center gap-3 overflow-x-auto pb-2">
-                    {Array.from({ length: Math.min(config.kw11.count, 8) }).map((_, i) => (
-                      <EVCar 
-                        key={i} 
-                        isCharging={true} 
-                        batteryLevel={40 + Math.random() * 40} 
-                        carIndex={i} 
-                      />
-                    ))}
-                    {config.kw11.count > 8 && (
-                      <div className="flex items-center px-3 py-2 bg-gray-100 rounded-md">
-                        <span className="text-sm text-gray-600">+{config.kw11.count - 8} more</span>
-                      </div>
-                    )}
+                  <div className="flex items-center gap-3 pb-2">
+                    <div className="flex items-center gap-3 min-w-0">
+                      {Array.from({ length: Math.min(config.kw11.count, 8) }).map((_, i) => (
+                        <div key={i} className="relative z-10">
+                          <EVCar 
+                            isCharging={true} 
+                            batteryLevel={40 + Math.random() * 40} 
+                            carIndex={i} 
+                          />
+                        </div>
+                      ))}
+                      {config.kw11.count > 8 && (
+                        <div className="flex items-center px-3 py-2 bg-gray-100 rounded-md">
+                          <span className="text-sm text-gray-600">+{config.kw11.count - 8} more</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -189,7 +192,7 @@ export default function SimulationResultsComponent({ results, config }: Props) {
                 <h4 className="text-sm font-medium text-green-600">22kW Charging Stations</h4>
                 <div className="flex flex-wrap gap-6">
                   <ChargingStationVisual power={22} count={config.kw22.count} isCharging={true} />
-                  <div className="flex items-center gap-3 overflow-x-auto pb-2">
+                  <div className="flex items-center gap-3 pb-2">
                     {Array.from({ length: Math.min(config.kw22.count, 8) }).map((_, i) => (
                       <EVCar 
                         key={i} 
@@ -213,7 +216,7 @@ export default function SimulationResultsComponent({ results, config }: Props) {
                 <h4 className="text-sm font-medium text-purple-600">50kW Charging Stations</h4>
                 <div className="flex flex-wrap gap-6">
                   <ChargingStationVisual power={50} count={config.kw50.count} isCharging={true} />
-                  <div className="flex items-center gap-3 overflow-x-auto pb-2">
+                  <div className="flex items-center gap-3 pb-2">
                     {Array.from({ length: Math.min(config.kw50.count, 8) }).map((_, i) => (
                       <EVCar 
                         key={i} 
