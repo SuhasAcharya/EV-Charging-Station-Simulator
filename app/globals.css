@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-end-rgb));
+}
+
+#simulator {
+  scroll-margin-top: 2rem;
+}
+
+/* Add scroll margin to all sections */
+#features,
+#simulator,
+#documentation {
+  scroll-margin-top: 4rem; /* Increased to account for fixed header */
+}
+
+/* Add smooth scrolling to the whole page */
+html {
+  scroll-behavior: smooth;
+} 
+
+@keyframes charging {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+.charging-animation {
+  animation: charging 2s infinite;
+}
+
+@keyframes drive {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+.drive-animation {
+  animation: drive 10s linear infinite;
+} 
